@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0c0b">
+  <meta name="description" content="A living eye, made entirely of characters. Move your cursor or enable your camera to catch its attention. Private, on-device face tracking.">
+  <title>IRIS — The ASCII Observer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0c0b'/%3E%3Cpath d='M7 32Q32 3 57 32Q32 61 7 32' fill='none' stroke='%23dca563' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23dca563'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="./" aria-label="IRIS home"><svg viewBox="0 0 36 28" aria-hidden="true"><path d="M2 14Q18-6 34 14Q18 34 2 14Z"/><circle cx="18" cy="14" r="5"/></svg><span>IRIS<span class="brand-dot">.</span></span></a>
+      <div class="header-caption">INTERACTIVE STUDIES <span>/</span> NO. 001</div>
+      <div class="local-badge"><span class="dot"></span> RUNS ON YOUR DEVICE</div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div><div class="eyebrow">AN EXPERIMENT IN ATTENTION</div><h1>A gaze of its own<span>.</span></h1></div>
+        <p>An eye made of characters. <br>Give it a little movement. See what happens.</p>
+      </section>
+
+      <section class="observer" id="observer" aria-label="Interactive ASCII eye">
+        <div class="stage-top"><span><span class="live-mark"></span> THE OBSERVER</span><span id="input-label">INPUT: POINTER</span></div>
+        <div id="stage" class="stage">
+          <canvas id="eye" role="img" aria-label="An animated amber ASCII eye that follows your pointer or face"></canvas>
+          <div class="cross cross-tl">+</div><div class="cross cross-tr">+</div><div class="cross cross-bl">+</div><div class="cross cross-br">+</div>
+          <div class="stage-caption" id="stage-caption">MOVE YOUR CURSOR. CATCH ITS EYE.</div>
+          <div class="camera-preview" id="camera-preview" hidden>
+            <video id="video" autoplay muted playsinline aria-label="Mirrored camera preview"></video>
+            <canvas id="boxes" aria-hidden="true"></canvas>
+            <span class="preview-label" id="preview-label">SEARCHING FOR A FACE</span>
+          </div>
+          <button class="expand icon-button" id="fullscreen" aria-label="Enter fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg></button>
+        </div>
+        <div class="stage-bottom"><span id="status" role="status" aria-live="polite"><i class="status-dot"></i> AWAITING YOUR CURIOSITY</span><span class="coordinates" id="coordinates">X +0.00 <b>/</b> Y +0.00</span><span class="fps" id="fps">— FPS</span></div>
+      </section>
+
+      <section class="controls" aria-label="Eye controls">
+        <div class="control-group input-group"><span class="control-label">01 <b>INPUT</b></span><div class="segmented" role="group" aria-label="Tracking input"><button class="selected" id="pointer" aria-pressed="true">Pointer</button><button id="demo" aria-pressed="false">Autopilot</button></div></div>
+        <div class="control-group color-group"><span class="control-label">02 <b>IRIS</b></span><div class="swatches" role="group" aria-label="Iris color"><button class="swatch amber selected" data-color="amber" aria-label="Amber iris" aria-pressed="true"></button><button class="swatch sage" data-color="sage" aria-label="Sage iris" aria-pressed="false"></button><button class="swatch ice" data-color="ice" aria-label="Ice iris" aria-pressed="false"></button></div></div>
+        <div class="control-group response-group"><label class="control-label" for="response">03 <b>RESPONSE</b></label><input id="response" type="range" min="1" max="10" value="6" aria-label="Eye movement responsiveness"><span id="response-value">06</span></div>
+        <button class="camera-button" id="camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h4l2-3h6l2 3h4v13H3Z"/><circle cx="12" cy="13" r="4"/></svg><span>Enable camera</span><span class="arrow">↗</span></button>
+      </section>
+      <div class="message" id="message" role="status" hidden></div>
+
+      <footer><p><span class="privacy-icon">⌁</span> YOUR CAMERA. YOUR DEVICE. YOUR MOMENT.<span class="privacy-detail"> Video is never recorded or uploaded.</span></p><button id="about" aria-expanded="false" aria-controls="about-panel">Behind the gaze <span>+</span></button></footer>
+      <div id="about-panel" class="about-panel" hidden><p>Thousands of characters, one curious eye. The iris is drawn live, with a little breathing, a natural blink, and a gaze that eases into place.</p><p><strong>Camera mode follows a face.</strong> It keeps its attention on the same face while visible, and chooses the largest face when finding someone new. Keep your face well lit and within a few feet of the camera. If you step away, it looks around until you return.</p><p>Face detection uses Google's MediaPipe entirely inside your browser. No images leave your device. Switching to Pointer or Autopilot turns the camera off. Camera access needs HTTPS or localhost and your browser's permission.</p></div>
+    </main>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
